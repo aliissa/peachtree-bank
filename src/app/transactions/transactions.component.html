@@ -1,0 +1,23 @@
+<div>
+  <app-section-header title="Recent Tranesactions" height="60" icon="../../assets/icons/briefcase.svg" fontSize="20"></app-section-header>
+
+  <div class="search-container">
+    <app-input (searchTransactions)="search($event)" placeHolder="Search by typing..."></app-input>
+    <div>
+      <div>Sort By</div>
+    </div>
+  </div>
+
+  <div class="transactions-container">
+    <div class="transactions-container__row" *ngFor="let trans of transactions" [ngStyle]="{'border-left': '10px solid ' + trans.categoryCode + ''}">
+        <div class="transactions-container__row__small-item transactions-container__row__date">{{trans.transactionDate | date: 'MMM dd'}}</div>
+        <div class="transactions-container__row__small-item"><img class="transactions-container__row__logo" [src]="trans.merchantLogo" /></div>
+        <div class="transactions-container__row__title-item">
+          <div>{{ trans.merchant }}</div>
+          <div>{{ trans.transactionType }}</div>
+        </div>
+        <div class="transactions-container__row__small-item transactions-container__row__amount">-{{trans.amount | currency:'USD':true }}</div>
+    </div>
+  </div>
+ 
+</div>
